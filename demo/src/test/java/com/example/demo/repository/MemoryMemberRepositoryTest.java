@@ -1,8 +1,10 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.Member;
+import com.example.demo.service.MemberService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,7 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryMemberRepositoryTest {
 
-    MemoryMemberRepository repository = new MemoryMemberRepository();
+    MemoryMemberRepository repository;
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        repository = new MemoryMemberRepository();
+        memberService = new MemberService(repository);
+    }
 
     @AfterEach
     public void afterEach() {
